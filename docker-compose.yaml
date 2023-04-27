@@ -36,8 +36,7 @@ services:
       - ../my_laravel_app/:/var/www/
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
     networks:
       - myappnetwork
 
@@ -64,6 +63,15 @@ services:
     image: redis
     ports:
       - "7001:7001"
+    networks:
+      - myappnetwork
+
+  # Handle emails (mailhog)
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
     networks:
       - myappnetwork
 
