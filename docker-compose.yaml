@@ -3,77 +3,27 @@ services:
 
   # The application (PHP)
   app:
-    container_name: app
-    build:
-      context: ./
-      dockerfile: ./images/Dockerfile
-      args:
-        - USER=murauer  # Change your group here
-        - UID=1000  # Change your user here
-        - NODEJS=16  # Customize your nodejs version
-    working_dir: /var/www/
-    volumes:
-      - ../my_laravel_app/:/var/www/
-      - ./php/php-override.ini:/usr/local/etc/php/conf.d/php-override.ini
-      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-    environment:
-      APPLICATION_ENV: development
-      NLS_LANG: GERMAN_AUSTRIA.UTF8
-      LANG: de_AT.UTF-8
-    expose:
-      - 9000
-    networks:
-      - myappnetwork
+    # TODO
 
   # The web server (NGINX)
   web:
-    container_name: web
-    image: nginx:latest
-    restart: unless-stopped
-    tty: true
-    working_dir: /var/www/
-    volumes:
-      - ../my_laravel_app/:/var/www/
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    ports:
-      - 80:80
-    networks:
-      - myappnetwork
+    # TODO
+
 
   # The db (MYSQL)
   db:
-    container_name: db
-    image: mariadb:latest
-    volumes:
-      # create persistent docker volume
-      - ./mysql-data/data:/var/lib/mysql
-      # mount configuration
-      - ./mysql:/etc/mysql/conf.d
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=my_app_db
-    ports:
-      - "8001:3306"
-    networks:
-      - myappnetwork
+    # TODO
+
 
   # The cache (redis)
   redis:
-    container_name: redis
-    image: redis
-    ports:
-      - "7001:7001"
-    networks:
-      - myappnetwork
+    # TODO
+
 
   # Handle emails (mailhog)
-  mailhog:
-    container_name: mailhog
-    image: mailhog/mailhog
-    ports:
-      - "8025:8025"
-    networks:
-      - myappnetwork
+  emails:
+    # TODO
+
 
 #Docker Networks
 networks:
